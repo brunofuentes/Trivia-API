@@ -343,7 +343,7 @@ ocalhost:5000/questions/add]
 ### POST '/quizzes'
 
 - Returns a random question which have not been returned before. It returns a value and a success value.
-- Sample: [-d '{"quiz_category":{"type":"History", "id":3}, "previous_questions":[2]}' -H "Content-Type: application/json" -X POST http://localhost:5000/quizzes]
+- Sample: **curl -d '{"quiz_category":{"type":"History", "id":3}, "previous_questions":[2]}' -H "Content-Type: application/json" -X POST http://localhost:5000/quizzes**
 
 ```
 {
@@ -356,41 +356,6 @@ ocalhost:5000/questions/add]
   },
   "success": true
 }
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
-This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
-
-Endpoints
-GET '/api/v1.0/categories'
-GET ...
-POST ...
-DELETE ...
-
-GET '/api/v1.0/categories'
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
-- Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
-{'1' : "Science",
-'2' : "Art",
-'3' : "Geography",
-'4' : "History",
-'5' : "Entertainment",
-'6' : "Sports"}
-
 ```
 
 ## Error Handling
