@@ -100,7 +100,7 @@ def create_app(test_config=None):
         return jsonify({
           'success': True,
           'questions': questions_paginated,
-          'total_questions': len(Question.query.all()),
+          'total_questions': len(Question.query.filter(Question.category == category_id).all()),
           'current category': category_id
         })
     except BaseException:
