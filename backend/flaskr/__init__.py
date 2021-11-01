@@ -138,7 +138,7 @@ def create_app(test_config=None):
   endpoint to POST a new question, 
   '''
 
-  @app.route('/questions', methods=['POST'])
+  @app.route('/questions/add', methods=['POST'])
   def new_question():
     
     body = request.get_json()
