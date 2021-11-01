@@ -101,7 +101,7 @@ def create_app(test_config=None):
           'success': True,
           'questions': questions_paginated,
           'total_questions': len(Question.query.filter(Question.category == category_id).all()),
-          'current category': category_id
+          'current_category': category_id
         })
     except BaseException:
       abort(422) #not able to process request
@@ -266,7 +266,7 @@ def create_app(test_config=None):
     return jsonify({
       'success': False,
       'error': 422,
-      'message': 'unprocessable'
+      'message': 'Unprocessable'
     }), 422
 
   @app.errorhandler(500)
