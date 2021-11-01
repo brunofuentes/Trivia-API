@@ -30,15 +30,15 @@ psql trivia < trivia.psql
 
 ### Running the server
 
-From within the `./src` directory first ensure you are working using your created virtual environment.
+From within the `backend` directory first ensure you are working using your created virtual environment.
 
 To run the server, execute:
 
 ```bash
-flask run --reload
+export FLASK_APP=flaskr
+export FLASK_ENV=development
+flask run or python -m flask run
 ```
-
-The `--reload` flag will detect file changes and restart the server automatically.
 
 ## ToDo Tasks
 These are the files you'd want to edit in the backend:
@@ -75,9 +75,61 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 
 9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
+# API Reference
+
+## Getting Started
+
+- Base URL: This app is supposed to run locally, therefore no URL is given. The backend of the app (http://localhost:5000/ or http://127.0.0.1:5000) is set as a proxy in the frontend configuration.
+- Authentication: Not required in this version.
+
+## Endpoints
+
+### GET '/categories'
+
+* General:
+- Returns a list of available categories, the total number of categories and a success value.
+
+* Sample: http://localhost:5000/categories
+
+```
+{
+  "categories": [
+    {
+      "id": 1,
+      "type": "Science"
+    },
+    {
+      "id": 2,
+      "type": "Art"
+    },
+    {
+      "id": 3,
+      "type": "Geography"
+    },
+    {
+      "id": 4,
+      "type": "History"
+    },
+    {
+      "id": 5,
+      "type": "Entertainment"
+    },
+    {
+      "id": 6,
+      "type": "Sports"
+    }
+  ],
+  "success": true,
+  "total_categories": 6
+}
+
+```
 
 
-## Review Comment to the Students
+
+
+
+
 ```
 This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
 
