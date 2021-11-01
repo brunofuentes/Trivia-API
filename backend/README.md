@@ -86,8 +86,8 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 
 ### GET '/questions'
 
-    - Returns a list of available questions ordered by ID and paginated (10 questions per page), the total number of questions and the total number of categories.
-    - Sample: `curl http://localhost:5000/questions`
+-  Returns a list of available questions ordered by ID and paginated (10 questions per page), the total number of questions and the total number of categories.
+- Sample: `curl http://localhost:5000/questions`
 
 ```
 {
@@ -270,7 +270,7 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 ### DELETE '/questions/{question_id}'
 
 - Deletes a specific question from the database. Returns the deleted question, its ID and a success value.
-- Sample: `curl http://localhost:5000/questions/21`
+- Sample: `curl -X DELETE http://localhost:5000/questions/21`
 
 ```
 {
