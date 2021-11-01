@@ -84,12 +84,121 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 
 ## Endpoints
 
+### GET '/questions'
+
+    - Returns a list of available questions ordered by ID and paginated (10 questions per page), the total number of questions and the total number of categories.
+    - Sample: [http://localhost:5000/questions]
+
+```
+{
+  "categories": [
+    {
+      "id": 1,
+      "type": "Science"
+    },
+    {
+      "id": 2,
+      "type": "Art"
+    },
+    {
+      "id": 3,
+      "type": "Geography"
+    },
+    {
+      "id": 4,
+      "type": "History"
+    },
+    {
+      "id": 5,
+      "type": "Entertainment"
+    },
+    {
+      "id": 6,
+      "type": "Sports"
+    }
+  ],
+  "current category": null,
+  "questions": [
+    {
+      "answer": "Apollo 13",
+      "category": 5,
+      "difficulty": 4,
+      "id": 2,
+      "question": "What movie earned Tom Hanks his third straight Oscar nomination, in 1996?"
+    },
+    {
+      "answer": "Tom Cruise",
+      "category": 5,
+      "difficulty": 4,
+      "id": 4,
+      "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
+    },
+    {
+      "answer": "Maya Angelou",
+      "category": 4,
+      "difficulty": 2,
+      "id": 5,
+      "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
+    },
+    {
+      "answer": "Edward Scissorhands",
+      "category": 5,
+      "difficulty": 3,
+      "id": 6,
+      "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+    },
+    {
+      "answer": "Muhammad Ali",
+      "category": 4,
+      "difficulty": 1,
+      "id": 9,
+      "question": "What boxer's original name is Cassius Clay?"
+    },
+    {
+      "answer": "Brazil",
+      "category": 6,
+      "difficulty": 3,
+      "id": 10,
+      "question": "Which is the only team to play in every soccer World Cup tournament?"
+    },
+    {
+      "answer": "Uruguay",
+      "category": 6,
+      "difficulty": 4,
+      "id": 11,
+      "question": "Which country won the first ever soccer World Cup in 1930?"
+    },
+    {
+      "answer": "George Washington Carver",
+      "category": 4,
+      "difficulty": 2,
+      "id": 12,
+      "question": "Who invented Peanut Butter?"
+    },
+    {
+      "answer": "Lake Victoria",
+      "category": 3,
+      "difficulty": 2,
+      "id": 13,
+      "question": "What is the largest lake in Africa?"
+    },
+    {
+      "answer": "The Palace of Versailles",
+      "category": 3,
+      "difficulty": 3,
+      "id": 14,
+      "question": "In which royal palace would you find the Hall of Mirrors?"
+    }
+  ],
+  "success": true,
+  "total_questions": 21
+}
+```
+
 ### GET '/categories'
 
-* General:
-- Returns a list of available categories, the total number of categories and a success value.
-
-* Sample: http://localhost:5000/categories
+    - Returns a list of available categories, the total number of categories and a success value.
+    - Sample: [http://localhost:5000/categories]
 
 ```
 {
@@ -122,8 +231,140 @@ One note before you delve into your tasks: for each endpoint, you are expected t
   "success": true,
   "total_categories": 6
 }
+```
+### GET '/categories/{category_id}/questions'
+
+- Returns all questions within the selected category (10 questions per page). The total number of questions, the current category and a success value are also given.
+- Sample: [http://localhost:5000/categories/3/questions]
 
 ```
+{
+  "current category": 3,
+  "questions": [
+    {
+      "answer": "Lake Victoria",
+      "category": 3,
+      "difficulty": 2,
+      "id": 13,
+      "question": "What is the largest lake in Africa?"
+    },
+    {
+      "answer": "The Palace of Versailles",
+      "category": 3,
+      "difficulty": 3,
+      "id": 14,
+      "question": "In which royal palace would you find the Hall of Mirrors?"
+    },
+    {
+      "answer": "Agra",
+      "category": 3,
+      "difficulty": 2,
+      "id": 15,
+      "question": "The Taj Mahal is located in which Indian city?"
+    }
+  ],
+  "success": true,
+  "total_questions": 3
+}
+```
+### DELETE '/questions/{question_id}'
+
+- Deletes a specific question from the database. Returns the deleted question, its ID and a success value.
+- Sample: [http://localhost:5000/questions/21]
+
+```
+{
+  "deleted": {
+    "answer": "Alexander Fleming",
+    "category": 1,
+    "difficulty": 3,
+    "id": 21,
+    "question": "Who discovered penicillin?"
+  },
+  "deleted_id": 21,
+  "success": true
+}
+```
+
+### POST '/questions/add'
+
+- Add a new question to the database. Returns the new question ID and a success value.
+- It must include:
+    - A question
+    - An answer
+    - A category
+    - A difficulty
+
+- Sample: [-d '{"question": "example", "answer": "example", "category": "3", "difficulty":3}' -H "Content-Type: application/json" -X POST http://l
+ocalhost:5000/questions/add]
+
+
+```
+{
+  "created": 27,
+  "success": true
+}
+```
+
+### POST '/search'
+
+- Returns questions containing the search term from user input. Results are shown paginated (10 per page).
+- Sample: [-d '{"searchTerm": "test"}' -H "Content-Type: application/json" -X POST http://localhost:5000/search]
+
+```
+{
+  "questions": [
+    {
+      "answer": "test answer",
+      "category": 1,
+      "difficulty": 4,
+      "id": 24,
+      "question": "test questions"
+    },
+    {
+      "answer": "test answer",
+      "category": 2,
+      "difficulty": 4,
+      "id": 25,
+      "question": "test_questions"
+    },
+    {
+      "answer": "test answer",
+      "category": 2,
+      "difficulty": 4,
+      "id": 26,
+      "question": "test_questions"
+    }
+  ],
+  "success": true
+}
+```
+
+### POST '/quizzes'
+
+- Returns a random question which have not been returned before. It returns a value and a success value.
+- Sample: [-d '{"quiz_category":{"type":"History", "id":3}, "previous_questions":[2]}' -H "Content-Type: application/json" -X POST http://localhost:5000/quizzes]
+
+```
+{
+  "question": {
+    "answer": "The Palace of Versailles",
+    "category": 3,
+    "difficulty": 3,
+    "id": 14,
+    "question": "In which royal palace would you find the Hall of Mirrors?"
+  },
+  "success": true
+}
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -152,6 +393,24 @@ GET '/api/v1.0/categories'
 
 ```
 
+## Error Handling
+
+- All errors are returned as JSON objects.
+    - 400: Bad Request
+    - 404: Not found
+    - 405: Method not allowed
+    - 422: Unprocessable
+    - 500: Internal server error
+
+Sample:
+
+```
+{
+    'success': False,
+    'error': 405,
+    'message': 'Method not allowed'
+}
+```
 
 ## Testing
 To run the tests, run
