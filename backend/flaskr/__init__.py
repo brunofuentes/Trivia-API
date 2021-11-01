@@ -9,14 +9,14 @@ from models import setup_db, Question, Category
 QUESTIONS_PER_PAGE = 10
 
 def paginate_questions(request, selection):
-  page = request.args.get('page', 1, type=int)
-  start = (page - 1) * QUESTIONS_PER_PAGE
-  end = start + QUESTIONS_PER_PAGE
+    page = request.args.get('page', 1, type=int)
+    start = (page - 1) * QUESTIONS_PER_PAGE
+    end = start + QUESTIONS_PER_PAGE
 
-  questions = [question.format() for question in selection]
-  current_questions = questions[start:end]
+    questions = [question.format() for question in selection]
+    current_questions = questions[start:end]
 
-  return current_questions
+    return current_questions
 
 def create_app(test_config=None):
   # create and configure the app
@@ -107,7 +107,8 @@ def create_app(test_config=None):
         return jsonify({
           'success': True,
           'questions': questions_paginated,
-          'total_questions': len(Question.query.filter(Question.category == category_id).all()),
+          'total_questions': len(Question.query.filter(
+                    Question.category == category_id).all()),
           'current_category': category_id
         })
     except BaseException:
@@ -181,7 +182,8 @@ def create_app(test_config=None):
     body = request.get_json()
     search = body.get('searchTerm', None)
 
-    questions = Question.query.order_by(Question.id).filter(Question.question.ilike('%{}%'.format(search)))
+    questions = Question.query.order_by(Question.id).filter(
+            Question.question.ilike('%{}%'.format(search)))
 
     questions_paginated = paginate_questions(request, questions)
 
@@ -212,7 +214,8 @@ def create_app(test_config=None):
         questions = Question.query.all()
       else:
         category_id = quiz_category['id']
-        questions = Question.query.filter(Question.category == category_id).all()
+        questions = Question.query.filter(
+                Question.category == category_id).all()
       
       new_questions = []
 
@@ -286,5 +289,4 @@ def create_app(test_config=None):
     }), 500
   
   return app
-
     
