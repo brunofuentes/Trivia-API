@@ -197,8 +197,8 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 
 ### GET '/categories'
 
-    - Returns a list of available categories, the total number of categories and a success value.
-    - Sample: `curl http://localhost:5000/categories`
+- Returns a list of available categories, the total number of categories and a success value.
+- Sample: `curl http://localhost:5000/categories`
 
 ```
 {
