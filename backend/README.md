@@ -87,7 +87,7 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 ### GET '/questions'
 
     - Returns a list of available questions ordered by ID and paginated (10 questions per page), the total number of questions and the total number of categories.
-    - Sample: [http://localhost:5000/questions]
+    - Sample: `curl http://localhost:5000/questions`
 
 ```
 {
@@ -198,7 +198,7 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 ### GET '/categories'
 
     - Returns a list of available categories, the total number of categories and a success value.
-    - Sample: [http://localhost:5000/categories]
+    - Sample: `curl http://localhost:5000/categories`
 
 ```
 {
@@ -235,7 +235,7 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 ### GET '/categories/{category_id}/questions'
 
 - Returns all questions within the selected category (10 questions per page). The total number of questions, the current category and a success value are also given.
-- Sample: [http://localhost:5000/categories/3/questions]
+- Sample: `curl http://localhost:5000/categories/3/questions`
 
 ```
 {
@@ -270,7 +270,7 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 ### DELETE '/questions/{question_id}'
 
 - Deletes a specific question from the database. Returns the deleted question, its ID and a success value.
-- Sample: [http://localhost:5000/questions/21]
+- Sample: `curl http://localhost:5000/questions/21`
 
 ```
 {
@@ -295,8 +295,7 @@ One note before you delve into your tasks: for each endpoint, you are expected t
     - A category
     - A difficulty
 
-- Sample: [-d '{"question": "example", "answer": "example", "category": "3", "difficulty":3}' -H "Content-Type: application/json" -X POST http://l
-ocalhost:5000/questions/add]
+- Sample: `curl -d '{"question": "example", "answer": "example", "category": "3", "difficulty":3}' -H "Content-Type: application/json" -X POST http://localhost:5000/questions/add`
 
 
 ```
@@ -309,7 +308,7 @@ ocalhost:5000/questions/add]
 ### POST '/search'
 
 - Returns questions containing the search term from user input. Results are shown paginated (10 per page).
-- Sample: [-d '{"searchTerm": "test"}' -H "Content-Type: application/json" -X POST http://localhost:5000/search]
+- Sample: `curl -d '{"searchTerm": "test"}' -H "Content-Type: application/json" -X POST http://localhost:5000/search`
 
 ```
 {
@@ -343,7 +342,7 @@ ocalhost:5000/questions/add]
 ### POST '/quizzes'
 
 - Returns a random question which have not been returned before. It returns a value and a success value.
-- Sample: **curl -d '{"quiz_category":{"type":"History", "id":3}, "previous_questions":[2]}' -H "Content-Type: application/json" -X POST http://localhost:5000/quizzes**
+- Sample: `curl -d '{"quiz_category":{"type":"History", "id":3}, "previous_questions":[2]}' -H "Content-Type: application/json" -X POST http://localhost:5000/quizzes`
 
 ```
 {
